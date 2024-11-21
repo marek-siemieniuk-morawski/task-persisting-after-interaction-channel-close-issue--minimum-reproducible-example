@@ -10,11 +10,14 @@ The repository contains a minimum reproducible example for the issue. It include
 
 ### Prerequisites
 
+Follow the instructions in the README.md of the `/client-app` folder to set up the client app
 1. Clone the repository
 2. Install the "Conversation Transfer" plugin from the Plugin Library
-3. Follow the instructions in the README.md of the `/client-app` folder to set up the client app
-  - Add the client app's serverless function
-  - Launch the client app locally
+3. Deploy Close Conversation By Customer serverless 
+4. Create Studio Flow (see: `/close-conversation-by-customer/studio-flow.json`)
+3. Follow the instructions in the README.md of the `/client-app` folder to set up the client app. Long story short:
+  - Add serverless function(s) to your Twilio account (there are two functions, but one is optional)
+  - Update the `.env` file with the necessary URLs
 
 ### Reproduce the issue
 
@@ -29,6 +32,8 @@ The repository contains a minimum reproducible example for the issue. It include
 8. (as an agent) Observe that it's not possible to accept the task
 9. (as an agent) Click the Accept button a couple of times and wait for around 5 minutes
 10. (as an agent) Observe that the task is finally accepted and the conversation is closed
+
+Check the attached recording for the detailed steps.
 
 ## Expected behavior
 
