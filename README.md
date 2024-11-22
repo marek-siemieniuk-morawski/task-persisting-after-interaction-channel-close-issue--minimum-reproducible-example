@@ -33,7 +33,7 @@ Follow the instructions in the README.md of the `/client-app` folder to set up t
 9. (as an agent) Click the Accept button a couple of times and wait for around 5 minutes
 10. (as an agent) Observe that the task is finally accepted and the conversation is closed
 
-Check the attached recording for the detailed steps.
+Check the [attached recording](https://drive.google.com/file/d/13B8aPQLQRMQG3bXVoNPLTVf_6rw003hn/view?usp=sharing) for the detailed steps.
 
 ## Expected behavior
 
