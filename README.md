@@ -2,7 +2,7 @@
 
 We've added a new feature allowing the customers to initiate chat closure whenever they want, we have an edge case where the customer might reply to a parked chat but then close the conversation after we have a task created, but before the agent has a chance to accept it. In this case agents experience that when they try to accept the task it hangs for around 5 minutes before opening up in a closed conversation state and allowing them to end the task.
 
-Orginally, we reported that there's an issue after the conversation has been parked and the customer replies to it, but in the meantime we've observed the very same issue when the conversation is transferred to another agent. Therefore, for the sake of simplicity, we'll focus on the transfer scenario in this example as the Conversation Transfer plugin is available in the Plugin Library.
+Orginally, we reported that there's an issue after the conversation has been parked and the customer replies to it, but as we talked, in the meantime we've observed the very same issue when the conversation is transferred to another agent/queue. Therefore, for the sake of simplicity, we'll focus on the transfer scenario in this example as the Conversation Transfer plugin is available in the Plugin Library.
 
 The repository contains a minimum reproducible example for the issue. It includes a client app which is a fork of the [Conversations Demo Web App](https://github.com/twilio/twilio-conversations-demo-react) with the button to close the conversation added.
 
@@ -13,10 +13,10 @@ The repository contains a minimum reproducible example for the issue. It include
 Follow the instructions in the README.md of the `/client-app` folder to set up the client app
 1. Clone the repository
 2. Install the "Conversation Transfer" plugin from the Plugin Library
-3. Deploy Close Conversation By Customer serverless 
+3. Deploy "Close Conversation By Customer" serverless service
 4. Create Studio Flow (see: `/close-conversation-by-customer/studio-flow.json`)
 3. Follow the instructions in the README.md of the `/client-app` folder to set up the client app. Long story short:
-  - Add serverless function(s) to your Twilio account (there are two functions, but one is optional)
+  - Add classic serverless function(s) to your Twilio account
   - Update the `.env` file with the necessary URLs
 
 ### Reproduce the issue

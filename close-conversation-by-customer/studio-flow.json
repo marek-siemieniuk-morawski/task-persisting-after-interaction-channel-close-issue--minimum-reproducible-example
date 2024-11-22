@@ -1,0 +1,119 @@
+{
+  "description": "Bot flow for creating a Flex webchat task",
+  "states": [
+    {
+      "name": "Trigger",
+      "type": "trigger",
+      "transitions": [
+        {
+          "next": "SendMessageToAgent",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "incomingCall"
+        },
+        {
+          "next": "SendConversationToAgent",
+          "event": "incomingConversationMessage"
+        },
+        {
+          "event": "incomingRequest"
+        },
+        {
+          "event": "incomingParent"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 0,
+          "y": -10
+        }
+      }
+    },
+    {
+      "name": "SendMessageToAgent",
+      "type": "send-to-flex",
+      "transitions": [
+        {
+          "event": "callComplete"
+        },
+        {
+          "event": "failedToEnqueue"
+        },
+        {
+          "event": "callFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 30,
+          "y": 180
+        },
+        "workflow": "WW39a982d9f31aa8efaa16b9bfc10660c7",
+        "channel": "TC86e2222a033280cecc1e1e8dc09519e2",
+        "attributes": "{\"channelSid\":\"{{trigger.message.ChannelSid}}\",\"channelType\":\"{{trigger.message.ChannelAttributes.channel_type}}\",\"name\":\"{{trigger.message.ChannelAttributes.from}}\"}"
+      }
+    },
+    {
+      "name": "SendConversationToAgent",
+      "type": "send-to-flex",
+      "transitions": [
+        {
+          "next": "SetFlexInteractionAttributes",
+          "event": "callComplete"
+        },
+        {
+          "event": "failedToEnqueue"
+        },
+        {
+          "event": "callFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 380,
+          "y": 180
+        },
+        "workflow": "WW39a982d9f31aa8efaa16b9bfc10660c7",
+        "channel": "TC86e2222a033280cecc1e1e8dc09519e2",
+        "attributes": "{\"from\":\"{{trigger.conversation.ChannelAttributes.pre_engagement_data.friendlyName}}\"}"
+      }
+    },
+    {
+      "name": "SetFlexInteractionAttributes",
+      "type": "run-function",
+      "transitions": [
+        {
+          "event": "success"
+        },
+        {
+          "event": "fail"
+        }
+      ],
+      "properties": {
+        "service_sid": "ZSf598980875a4d2f718b51894b9ce3f8c",
+        "environment_sid": "ZE7fe0562657bdf71d57ac42da2cba550e",
+        "offset": {
+          "x": 380,
+          "y": 460
+        },
+        "function_sid": "ZH13266fa29b3fa0dbdf0956b98aa487c4",
+        "parameters": [
+          {
+            "value": "{{trigger.conversation.ConversationSid}}",
+            "key": "ConversationSid"
+          },
+          {
+            "value": "{{widgets.SendConversationToAgent.routing.properties.attributes}}",
+            "key": "Attributes"
+          }
+        ],
+        "url": "https://close-conversation-by-customer-7140-dev.twil.io/set-flex-interaction-attributes"
+      }
+    }
+  ],
+  "initial_state": "Trigger",
+  "flags": {
+    "allow_concurrent_calls": true
+  }
+}
