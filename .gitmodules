@@ -1,0 +1,3 @@
+[submodule "client-app"]
+	path = client-app
+	url = https://github.com/marek-siemieniuk-morawski/twilio-conversations-demo-react
